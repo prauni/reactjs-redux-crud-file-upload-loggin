@@ -1,5 +1,5 @@
 const iState = {
-	name:"Rohit Sharma.",
+	name:"Rohit",
 	wishes:['eat','code']
 }
 const reducer=(state=iState,action)=>{

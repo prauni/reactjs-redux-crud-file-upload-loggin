@@ -20,7 +20,7 @@ class Profile extends Component{
 			return <Redirect to="/Login" />
 		}		
 		return (
-			<div style={{"background-color":"#87e7f1",}}>
+			<div style={{backgroundColor:"#87e7f1",}}>
 				<h3 style={{"display":"inline-block",}}>Redux using Class Component ( Profile ) :: This is admin page, without login you can't access this page. <br />
 				this.state.myname :: {this.state.myname} <br />
 				this.props.myname :: {this.props.myname}</h3>

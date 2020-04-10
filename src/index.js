@@ -78,13 +78,30 @@ class Helloworld extends React.Component{
 	
 	componentDidMount(){
 		$.ajax({
-			url:'https://api.coinmarketcap.com/v1/ticker/?limit=2',
-			success:(data)=>{
+			url:'http://localhost/projects/reactjs/app03redux/php/data.php',
+			success:(res)=>{
+				console.log('helllo');
+				console.log(res);
+				console.log('India');
+				res = JSON.parse(res);
+				res.map((val)=>{
+					console.log(val);
+				});
 				this.setState({
-					users:data
+					users:res
 				})
 			}
-		})
+		});
+		$.ajax({
+			url:'http://localhost/projects/reactjs/app03redux/php/content.php',
+			success:(res)=>{
+				//alert(99);
+				res = JSON.parse(res);
+				this.setState({
+					course:res.msg
+				})
+			}
+		});
 	}
 	
 	editTask(index,newValue){
@@ -170,7 +187,7 @@ class Helloworld extends React.Component{
 						<hr />
 						<div style={{float:"left",width:"50%"}} className="bgcolor">						
 							{this.state.course} Counter :: {this.state.count} &nbsp;
-							<button onClick={this.incrementCounter}> Add Count </button><hr />
+							<button onClick={this.incrementCounter}> Add Countdown </button><hr />
 							
 							<ul>
 								{

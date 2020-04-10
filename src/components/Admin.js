@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
+import $ from 'jquery';
+
 class Admin extends Component{
 	constructor(props){
 		super(props)
+		this.state = {
+			course:"Python"
+		}		
 		const token = localStorage.getItem("token")
 		let loggedIn = true
 		if(token == null){
@@ -15,6 +20,20 @@ class Admin extends Component{
 		}
 	}
 
+	componentDidMount(){
+		$.ajax({
+			url:'http://localhost/projects/reactjs/app03redux/php/admincontent.php',
+			success:(res)=>{
+				alert(99);
+				res = JSON.parse(res);
+				this.setState({
+					course:res.msg
+				})
+			}
+		});		
+	}
+	
+	
 	render(state){
 		if(this.state.loggedIn === false){
 			return <Redirect to="/Login" />
@@ -27,7 +46,10 @@ class Admin extends Component{
 				this.state.myname :: {this.state.myname} <br />
 				this.props.myname :: {this.props.myname}
 				</h3>
+				<h4>Course ::::: {this.state.course}</h4>
+				
 				<button onClick={()=>{this.props.changeName("Vimal")}}>Change Name to Vimal</button>
+				<button onClick={()=>{this.props.changeName("Alok")}}>Change Name to Alok</button>
 				{/*<Link to="/logout">Logout</Link>*/ }
 			</div>
 		)

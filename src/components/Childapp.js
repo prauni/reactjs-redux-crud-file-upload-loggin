@@ -13,16 +13,15 @@ function Childapp(props) {
   );
 }
 
-
-
 const mapStateToProps = (state)=>{
 		return {
 			myname:state.name
 		}
 	}
+	
 const mapDispatchToProps = (dispatch)=>{
 	return {
-	changeName:(name)=>{dispatch({type:'CHANGE_NAME',payload:name})}
+		changeName:(name)=>{dispatch({type:'CHANGE_NAME',payload:name})}
 	}
 }	
 export default connect(mapStateToProps,mapDispatchToProps)(Childapp);

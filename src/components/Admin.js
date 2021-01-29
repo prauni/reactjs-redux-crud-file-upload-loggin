@@ -24,7 +24,7 @@ class Admin extends Component{
 		$.ajax({
 			url:'http://localhost/projects/reactjs/app03redux/php/admincontent.php',
 			success:(res)=>{
-				alert(99);
+				//alert(99);
 				res = JSON.parse(res);
 				this.setState({
 					course:res.msg
@@ -39,10 +39,10 @@ class Admin extends Component{
 			return <Redirect to="/Login" />
 		}		
 		return (
-			<div>
+			<React.Fragment>
 				<h3 style={{"display":"inline-block",}}>
 				Redux using Class Component ( Admin ) :: This is admin page, 
-				without login you can't access this page. <br />
+				without login you cant access this page. <br />
 				this.state.myname :: {this.state.myname} <br />
 				this.props.myname :: {this.props.myname}
 				</h3>
@@ -51,7 +51,7 @@ class Admin extends Component{
 				<button onClick={()=>{this.props.changeName("Vimal")}}>Change Name to Vimal</button>
 				<button onClick={()=>{this.props.changeName("Alok")}}>Change Name to Alok</button>
 				{/*<Link to="/logout">Logout</Link>*/ }
-			</div>
+			</React.Fragment>
 		)
 	}
 }

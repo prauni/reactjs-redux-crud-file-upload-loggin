@@ -13,7 +13,7 @@ import UsersForm from './components/UsersForm.js';
 import Login from './components/Login.js';
 import Admin from './components/Admin.js';
 import Crudapi from './components/Crudapi.js';
-import Rcfudapi from './components/Rcfudapi.js';
+//import Rcfudapi from './components/Rcfudapi.js';
 import Headermenu from './components/Headermenu.js';
 import ShoppingCart from './components/ShoppingCart.js';
 import Profile from './components/Profile.js';
@@ -123,11 +123,11 @@ class Helloworld extends React.Component{
 		this.deleteTask 		= this.deleteTask.bind(this);
 		this.editTask 			= this.editTask.bind(this);
 	
-		this.addUser 			= this.addUser.bind(this);
+		this.addUser 			= this.onFileUpload.bind(this);
 		this.updateUser 		= this.updateUser.bind(this);
-		this.updateDept 		= this.updateDept.bind(this);
 		this.deleteUser 		= this.deleteUser.bind(this);
 		
+		this.updateDept 		= this.updateDept.bind(this);
 		this.onFileChange 		= this.onFileChange.bind(this);
 		this.onFileUpload 		= this.onFileUpload.bind(this);
 		this.fileData 			= this.fileData.bind(this);
@@ -145,10 +145,10 @@ class Helloworld extends React.Component{
 	// On file upload (click the upload button) 
 	onFileUpload = () => { 
 		// Create an object of formData 
-		const formData = new FormData(); 
+		/*const formData = new FormData(); 
 		// Update the formData object 
 		formData.append( 
-			"image", 
+			"myFile", 
 			this.state.selectedFile, 
 			//this.state.selectedFile.name 
 		); 
@@ -164,7 +164,7 @@ class Helloworld extends React.Component{
 		console.log(this.state.selectedFile); 
 		// Request made to the backend api 
 		// Send formData object 
-		axios.post("http://localhost/projects/reactjs/app03redux/php/update_data.php", formData); 
+		axios.post("http://localhost/projects/reactjs/app03redux/php/update_data.php", formData); */
 	};	
 
 
@@ -295,7 +295,7 @@ class Helloworld extends React.Component{
 	addUser(evt){
 		evt.preventDefault();
 		console.log('++---++++');
-		let users = this.state.users;
+		/*let users = this.state.users;
 		let newuser = this.state.currentUser;
 		let dept 	= this.state.currentDept; 
 		users.push({
@@ -307,10 +307,11 @@ class Helloworld extends React.Component{
 		
 		this.setState({
 			users:users,
-			currentUser:'',			
+			currentUser:'',
+			
 		})/* */
 		
-		
+		/*
 		$.ajax({
 			url:'http://localhost/projects/reactjs/app03redux/php/update_data.php',
 			data:'name='+newuser+'&dept='+dept,
@@ -320,10 +321,10 @@ class Helloworld extends React.Component{
 				/*res = JSON.parse(res);
 				this.setState({
 					course:res.msg
-				})*/ 
+				})*/ /*
 			}
 		});		
-		
+		*/
 	}
 	
 	deleteUser(id){
@@ -396,7 +397,7 @@ class Helloworld extends React.Component{
 						</div>
 						<Switch>
 							<Route exact path="/" component={Home} />
-							<Route path="/RCFUD" component={Rcfudapi} />
+							<Route path="/RCFUD" component={Crudapi} />
 							<Route path="/API" component={Crudapi} />
 							<Route path="/Crypo" component={Crypo} />
 							<Route path="/Login" component={Login} />
@@ -424,7 +425,6 @@ class Helloworld extends React.Component{
 									<th>Id</th>
 									<th>Name</th>
 									<th>Dept.</th>
-									<th>Img.</th>
 									<th>Action</th>
 								</tr>
 								{
@@ -433,7 +433,6 @@ class Helloworld extends React.Component{
 											<td>{user.id}</td>
 											<td>{user.name}</td>
 											<td>{user.department}</td>
-											<td><img src={'images/'+user.img}  style={{width:'100px'}} /></td>
 											<td>											
 											<button style={{color:"#f00",float:"right", cursor:"pointer"}} >Delete btn</button>
 											</td>

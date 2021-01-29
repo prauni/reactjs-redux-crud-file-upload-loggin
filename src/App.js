@@ -20,7 +20,7 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
 	return {
-	changeName:(name)=>{dispatch({type:'CHANGE_NAME',payload:name})}
+		changeName:(name)=>{dispatch({type:'CHANGE_NAME',payload:name})}
 	}
 }	
 

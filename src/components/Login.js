@@ -33,7 +33,7 @@ export default class Login extends Component{
 		
 		const formData = new FormData();
 		formData.append('prodID',7);
-		const apiUrl = 'http://localhost/test.php';
+		const apiUrl = 'http://localhost/projects/reactjs/app03redux/php/login.php';
 		//const apiUrl = 'http://jsonplaceholder.typicode.com/posts';		
 		/*
 		const options = {
@@ -57,23 +57,31 @@ export default class Login extends Component{
 		$.ajax({
 			url:apiUrl,
 			type: "POST",
+			dataType: 'JSON',			
 			data: fdata,
 			success:(response)=>{
-				console.log('Ajax success ');
-				let dataval = $.parseJSON(response);					
-				console.log(dataval['time']+':::'+dataval['username']);
+				if(response['status'] == 1){					
+					console.log('Ajax success ');
+					//let dataval = $.parseJSON(response);					
+					console.log(response['time']+':::'+response['username']);
+					//window.location.reload(false);
+					localStorage.setItem("token",response['token']);
+					this.setState({
+						loggedIn:true
+					});
+				}
 			},
 			error:(err)=>{
-				console.log('Ajax error ')
+				console.log('Ajax error ');
 			}
 		})
 
-		if(username === "X" && password === "Y"){
+		/*if(username === "X" && password === "Y"){
 			localStorage.setItem("token","helloworld")
 			this.setState({
 				loggedIn:true
 			})
-		}		
+		}*/		
 		
 	}
 	

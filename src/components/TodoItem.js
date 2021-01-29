@@ -27,10 +27,10 @@ class TodoItem extends React.Component{
 	renderForm(){
 		return(
 			<form onSubmit={this.updateItem}>
-				<input type="text" 
+				<input 	type="text" 
 						ref={(value)=>this.input = value}
 						defaultValue={this.props.details.name} />
-				<button type="submit" className={'floatright'}>Update</button>
+				<button type="submit" className={'floatright'}>Update btn</button>
 			</form>
 		)
 	}
@@ -44,12 +44,12 @@ class TodoItem extends React.Component{
 							evt.stopPropagation();
 							this.props.deleteTask(this.props.index) 
 						}}
-						className={'floatright'}>Delete </button> &nbsp; &nbsp; 
+						className={'floatright'}>Delete btn</button> &nbsp; &nbsp; 
 				<button onClick={(evt)=>{
 							evt.stopPropagation();
 							this.toggleState()
 						}}
-						style={{float:"right"}}>Edit</button> 
+						style={{float:"right"}}>Edit btn</button> 
 			</li>
 		)
 	}

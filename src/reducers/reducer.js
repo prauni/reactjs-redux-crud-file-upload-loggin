@@ -1,6 +1,6 @@
 const iState = {
-	name:"Rohit",
-	wishes:['eat','code']
+	name:"Rohiti",
+	wishes:['eat','sleep']
 }
 const reducer=(state=iState,action)=>{
 	if(action.type==='CHANGE_NAME'){

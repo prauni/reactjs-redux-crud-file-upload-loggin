@@ -1,17 +1,36 @@
-import React, { useState, useRef, Component } from 'react';
+import React, { useState, useRef, Component, useEffect  } from 'react';
 import axios from 'axios'; 
 import $ from 'jquery';
+import Clock from './Clock.js';
+import {BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
+
+function Hookclock() {
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+	setInterval(() => {
+	  setDate(new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
+	}, 1000);
+  }, []);
+
+  return <div>{date.toString()}</div>;
+}
 
 class Rcfudapi extends Component{
 	constructor(props){
 		super(props);
-		this.state 		= {cname:'RAM',dname:'SAM',sfile:'File',selectedFile:null,users:[],isToggleOn:'ON'};
+		this.state 		= {cname:'Riyan',dname:'R12',sfile:'File',selectedFile:null,users:[],isToggleOn:'ON',timer:456};
 		this.ucname 	= this.ucname.bind(this);
 		this.udname 	= this.udname.bind(this);
 		this.fchange 	= this.fchange.bind(this);
 		this.fupload 	= this.fupload.bind(this);
 		this.rfpage 	= this.rfpage.bind(this);
 		this.duser 		= this.duser.bind(this);
+	}
+	
+	componentDidMount() {
+		this.timer = setInterval(() => this.setState({ time: Date.now() }), 1000)
 	}
 	
 	duser = (id) => {
@@ -21,7 +40,9 @@ class Rcfudapi extends Component{
 			"uid", 
 			id
 		); 
-		axios.post("http://localhost/projects/reactjs/app03redux/php/delete_data.php", formData); 
+		axios.post("http://localhost/projects/reactjs/app03redux/php/delete_data.php", formData)
+		.then((response)=>{this.rfpage();}); 
+		
 	}
 	
 	rfpage = () => {
@@ -65,9 +86,9 @@ class Rcfudapi extends Component{
 		console.log(this.state.selectedFile); 
 		// Request made to the backend api 
 		// Send formData object 
-		axios.post("http://localhost/projects/reactjs/app03redux/php/update_data.php", formData); 
+		axios.post("http://localhost/projects/reactjs/app03redux/php/update_data.php", formData)
+		.then((response)=>{this.rfpage();}); ; 
 
-		
 		console.log('++1++')
 	}
 	
@@ -92,10 +113,19 @@ class Rcfudapi extends Component{
 		console.log('++++++');
 	}
 	
+	/*
+		
+	*/
+	
 	render(state){
 		return (
 				<div>
-					<h3>Rcfudapi Class Component....</h3>
+					<h3>Rcfudapi Class Component........</h3>
+					<Route component={Clock} />
+					<Route component={Hookclock} />
+					
+					<table style={{width:"100%"}}><tbody>
+					<tr><td style={{width:"30%"}}>
 					<form onSubmit={this.fupload}>
 						<h5>Name</h5>
 						<input 
@@ -115,12 +145,14 @@ class Rcfudapi extends Component{
 						<hr />
 						<button type="submit">Submit btn</button>
 					</form>
-					<h3>User List</h3>
+					</td><td style={{width:"50%"}}>
+					<h3>User List {this.state.timer}</h3>
 	<table style={{border:'1px solid red', width:'100%'}}><tbody>
 			<tr>
 				<td>Id</td>
 				<td>Name</td>
 				<td>Dept.</td>
+				<td>Image</td>
 				<td>Action </td>
 				<td>
 					<span  onClick={this.rfpage}>Refresh</span> &nbsp; &nbsp;
@@ -135,6 +167,7 @@ class Rcfudapi extends Component{
 						<td>{user.id}</td>
 						<td>{user.name}</td>
 						<td>{user.department}</td>
+						<td><img src={'images/'+user.img} width="100" /></td>
 						<td>											
 							<button  onClick={() => this.duser(user.id)} style={{color:"#f00",float:"left", cursor:"pointer"}} >
 								Delete btn
@@ -145,6 +178,7 @@ class Rcfudapi extends Component{
 				})
 			}
 		</tbody></table>
+				</td></tr></tbody></table>
 
 
 					

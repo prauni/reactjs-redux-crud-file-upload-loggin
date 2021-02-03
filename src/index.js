@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios'; 
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import {BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './index.css';
 import $ from 'jquery';
 import App from './App.js';
@@ -17,6 +17,10 @@ import Rcfudapi from './components/Rcfudapi.js';
 import Headermenu from './components/Headermenu.js';
 import ShoppingCart from './components/ShoppingCart.js';
 import Profile from './components/Profile.js';
+import Counter from './components/Counter.js';
+import Counternew from './components/Counternew.js';
+import Hookprofile from './components/Hookprofile.js';
+import Clock from './components/Clock.js';
 import Logout from './components/Logout.js';
 import logo from './logo.jpg';
 
@@ -404,7 +408,11 @@ class Helloworld extends React.Component{
 							<Route path="/Logout" component={Logout} />
 							<Route component={NotFound} />
 						</Switch>
+						<Route component={Counter} />
+						<Route component={Counternew} />
 						<Route component={Profile} />
+						<Route component={Hookprofile} />
+						<Route component={Clock} />
 						<Route component={App} />
 						<Route component={Childapp} />
 						<hr />

@@ -28,9 +28,9 @@ if(isset($_FILES['image'])){
 
 	if(empty($errors)==true){
 	 move_uploaded_file($file_tmp,"../public/images/".$file_name);
-	 echo "Success";
+	 $res['file_name'] = $file_name;
 	}else{
-	 print_r($errors);
+	 $res['file_name'] = $errors;
 	}
 }
 

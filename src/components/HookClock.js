@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 
-export class Clock extends Component {
-  state = {
-    date: new Date(),
-  };
+export class HookClock extends Component {
+function Clock() {
+  const [date, setDate] = useState(new Date());
 
-  componentDidMount() {
+  useEffect(() => {
     setInterval(() => {
-      this.setState({
-        date: new Date(),
-      });
+      setDate(new Date());
     }, 1000);
-  }
+  }, []);
 
-  render() {
-    return <div>{this.state.date.toString()}</div>;
-  }
-}
-export default Clock;
+  return <div>{date.toString()}</div>;
+}export default HookClock;

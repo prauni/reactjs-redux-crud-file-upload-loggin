@@ -1,8 +1,8 @@
 const iState = {
-	name:"Rohiti",
-	wishes:['eat','sleep']
+	name:"Small-King",
+	wishes:['Zoo','Eco-Park']
 }
-const reducer=(state=iState,action)=>{
+const reducer = (state=iState,action) => {
 	if(action.type==='CHANGE_NAME'){
 		return {
 			...state,

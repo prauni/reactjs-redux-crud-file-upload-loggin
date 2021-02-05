@@ -4,15 +4,12 @@ import {connect} from 'react-redux';
 
 
 function App(props) {
-	return (
-		<div className="App" style={{textAlign:"center", marginBottom:"10px"}}>
-			<h3 style={{"display":"inline-block",}}>
-				Redux using Function Component ( App ):: 
-				My name is {props.myname} :: 
-			</h3>
-			<button onClick={()=>{props.changeName("Suresh")}}>Change Name to Suresh</button>		
-		</div>
-	);
+  return (
+    <div className="App" style={{textAlign:"left"}}>
+      <h3 style={{"display":"inline-block",}}>Redux using Function Component ( App ):: My name is {props.myname} :: </h3>
+	  <button onClick={()=>{props.changeName("Suresh")}}>Change Name to Suresh</button>
+    </div>
+  );
 }
 
 const mapStateToProps = (state)=>{
@@ -20,7 +17,6 @@ const mapStateToProps = (state)=>{
 		myname:state.name
 	}
 }
-
 
 const mapDispatchToProps = (dispatch)=>{
 	return {

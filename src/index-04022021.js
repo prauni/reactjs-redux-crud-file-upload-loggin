@@ -5,9 +5,6 @@ import Modal from 'react-modal';
 import {BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './index.css';
 import $ from 'jquery';
-import MyApp from './components/MyApp.js';
-import AppOne from './components/AppOne.js';
-import AppTwo from './components/AppTwo.js';
 import App from './App.js';
 import Childapp from './components/Childapp.js';
 import TodoItem from './components/TodoItem.js';
@@ -27,25 +24,12 @@ import Clock from './components/Clock.js';
 import Logout from './components/Logout.js';
 import logo from './logo.jpg';
 
-
-import {createStore, applyMiddleware,compose, combineReducers} from 'redux';
+import {createStore, applyMiddleware,compose} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import reducer from './reducers/reducer';
-import nameReducer from './reducers/nameReducer';
-import wishReducer from './reducers/wishReducer';
 
-const masterReducer = combineReducers({
-	name:nameReducer,
-	wishes:wishReducer
-});
-
-const iState = {
-	name:"Small-King",
-	wishes:['Zoo','Eco-Park']
-}
-//const store = createStore(reducer);
-const store = createStore(masterReducer,iState);
+const store = createStore(reducer);
 
 const NotFound = () => (
 	<h3>NotFound : 404 Page</h3>
@@ -406,17 +390,6 @@ class Helloworld extends React.Component{
 			<Router>
 				<React.Fragment>					
 					<div className="bgcolor">
-						<div>
-							<table>
-								<tbody>
-									<tr>
-										<td><MyApp /></td>							
-										<td><AppOne /></td>
-										<td><AppTwo /></td>
-									</tr>
-								</tbody>
-							</table>							
-						</div>
 						<Links />
 						<Headermenu />
 						<div style={{"border":"1px solid red"}}>

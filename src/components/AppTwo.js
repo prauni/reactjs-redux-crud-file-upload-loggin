@@ -5,8 +5,9 @@ import {connect} from 'react-redux';
 function AppTwo(props) {
 	return (
 		<div className="App" style={{textAlign:"center", marginBottom:"10px", backgroundColor:"#950", color:"#FFF"}}>
-			<h3>Componenet Two</h3><br />
+			<h3>Componenet Two</h3>
 			<h5>{props.myname}</h5>
+			<h5>{props.myage}</h5>
 		</div>
 	);
 }
@@ -14,7 +15,8 @@ function AppTwo(props) {
 const mapStateToProps = (state)=>{
 	return {
 		myname:state.name,
-		mywish:state.wishes
+		mywish:state.wishes,
+		myage:state.sonage
 	}
 }
 

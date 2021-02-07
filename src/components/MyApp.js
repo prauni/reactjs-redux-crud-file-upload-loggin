@@ -20,7 +20,15 @@ function MyApp(props) {
 								Riyan The King
 							</h1>
 							<br />
-							<button style={{cursor:"pointer"}}  onClick={()=>{props.changeName("Suresh")}}>Change Name to Suresh</button><br />
+							<h4 style={{"display":"inline-block",color:"#d4446c"}}>
+								Redux, Combine Reducer, Saga 
+							</h4>
+							<button onClick={props.onAgeUp} style={{cursor:"pointer"}} >
+								My Age UP : {props.sonage}
+							</button><br />
+							<button onClick={()=>{props.changeName("Suresh")}} style={{cursor:"pointer"}} >
+								Change Name to Suresh
+							</button><br />
 							<h3 style={{color:"#FFF"}}>-- {props.myname} --</h3>
 							<h3 style={{color:"#F00"}}>Mother Componenet</h3>
 							<a style={{cursor:"pointer", color:"#15b5c5"}} onClick={()=>{props.getNewName("LION RAJA")}}>
@@ -39,15 +47,23 @@ function MyApp(props) {
 
 const mapStateToProps = (state)=>{
 	return {
+		sonage: state.sonage,
 		myname:state.name,
-		mywish:state.wishes
+		mywish:state.wishes,
+		bgc:state.bgc,
 	}
 }
 
 const mapDispatchToProps = (dispatch)=>{
 	return {
+		onAgeUp: () => {
+			dispatch({ type: "AGE_UP", sonage : Math.floor((Math.random() * 1000) + 1) });
+			dispatch({type:'BGC_Change',payload:1});
+			//this.props.getNewName('hello');
+		},
 		changeName:(name)=>{dispatch({type:'CHANGE_NAME',payload:name})},
 		getNewName:(name)=>{
+			//dispatch({type:'PLZWAIT',payload:'Please wait'})
 			
 			fetch("https://jsonplaceholder.typicode.com/users")
 			.then((result)=>result.json())

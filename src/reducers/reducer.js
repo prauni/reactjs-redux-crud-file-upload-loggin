@@ -1,6 +1,7 @@
 const iState = {
 	name:"Small-King",
-	wishes:['Zoo','Eco-Park']
+	msage:1,
+	wishes:['Zooooo','Eco-Park']
 }
 const reducer = (state=iState,action) => {
 	if(action.type==='CHANGE_NAME'){

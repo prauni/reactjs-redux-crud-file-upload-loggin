@@ -33,19 +33,31 @@ import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import reducer from './reducers/reducer';
 import nameReducer from './reducers/nameReducer';
+import sonageReducer from './reducers/sonageReducer';
+import bgcReducer from './reducers/bgcReducer';
 import wishReducer from './reducers/wishReducer';
 
+import createSagaMiddleware from "redux-saga";
+import { watchAgeUp } from "./saga";
+const sagaMiddleware = createSagaMiddleware();
+
+const composeEnhance = window._REDUX_DEVELOPER_EXTENSION_COMPOSE_||compose;
 const masterReducer = combineReducers({
 	name:nameReducer,
-	wishes:wishReducer
+	sonage:sonageReducer,
+	wishes:wishReducer,	
+	bgc:bgcReducer,	
 });
 
 const iState = {
-	name:"Small-King",
-	wishes:['Zoo','Eco-Park']
+	name:"*RTK*",
+	wishes:['Zoooooooooo','Eco-Park'],
+	sonage:4.5,
+	bgc:Math.floor((Math.random() * 100) + 1)
 }
 //const store = createStore(reducer);
-const store = createStore(masterReducer,iState);
+const store = createStore(masterReducer,iState, composeEnhance(applyMiddleware(sagaMiddleware)));
+sagaMiddleware.run(watchAgeUp);
 
 const NotFound = () => (
 	<h3>NotFound : 404 Page</h3>
@@ -120,7 +132,9 @@ class Helloworld extends React.Component{
 	constructor(){
 		super();
 		this.name = "Developer..";
+		
 		this.state = {
+			mtkage:2,
 			course:"React",
 			users:[{id:99,name:"Ajoy",department:"Chem"}],
 			searchlist:[],
@@ -152,9 +166,13 @@ class Helloworld extends React.Component{
 		this.onFileUpload 		= this.onFileUpload.bind(this);
 		this.fileData 			= this.fileData.bind(this);
 		
-		
-		
+		this.onAgeUp 			= this.onAgeUp.bind(this);
 	}
+	
+	onAgeUp = () => {
+		console.log('---->>>> -----');
+	}
+	
 	
 	// On file select (from the pop up) 
 	onFileChange = event => { 
@@ -410,9 +428,15 @@ class Helloworld extends React.Component{
 							<table>
 								<tbody>
 									<tr>
-										<td><MyApp /></td>							
+										<td><MyApp /></td>									
 										<td><AppOne /></td>
 										<td><AppTwo /></td>
+										<td style={{backgroundColor:"#cb86a2"}} >
+											<h5>Grand Mother Component</h5>
+											<button onClick={this.onAgeUp}>
+												Age UP : {this.state.mtkage} ::
+											</button>
+										</td>
 									</tr>
 								</tbody>
 							</table>							

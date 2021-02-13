@@ -1,13 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import AppOneChild from './AppOneChild.js';
 
 
 function AppOne(props) {
 	return (
-		<div className="App" style={{textAlign:"center", marginBottom:"10px", backgroundColor:"#"+props.bgc, color:"#FFF"}}>
+		<div className="App" style={{textAlign:"center", marginBottom:"10px", backgroundColor:"#999", color:"#FFF"}}>
 			<h3>Componenet One</h3>
 			<h5>{props.myname}</h5>
 			<h5>{props.sonage}</h5>
+			<AppOneChild />
 		</div>
 	);
 }

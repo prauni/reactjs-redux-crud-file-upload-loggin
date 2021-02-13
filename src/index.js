@@ -9,6 +9,14 @@ import MyApp from './components/MyApp.js';
 import AppOne from './components/AppOne.js';
 import AppTwo from './components/AppTwo.js';
 import App from './App.js';
+
+import Topbanner from './components/Topbanner.js';
+import HeaderMenuNew from './components/HeaderMenuNew.js';
+import Banner from './components/Banner.js';
+import LeftPanel from './components/LeftPanel.js';
+import Content from './components/Content.js';
+import Footer from './components/Footer.js';
+
 import Childapp from './components/Childapp.js';
 import TodoItem from './components/TodoItem.js';
 import TodoForm from './components/TodoForm.js';
@@ -34,6 +42,7 @@ import {Provider} from 'react-redux';
 import reducer from './reducers/reducer';
 import nameReducer from './reducers/nameReducer';
 import sonageReducer from './reducers/sonageReducer';
+import randReducer from './reducers/randReducer';
 import bgcReducer from './reducers/bgcReducer';
 import wishReducer from './reducers/wishReducer';
 
@@ -47,6 +56,7 @@ const masterReducer = combineReducers({
 	sonage:sonageReducer,
 	wishes:wishReducer,	
 	bgc:bgcReducer,	
+	rand:randReducer,
 });
 
 const iState = {
@@ -127,6 +137,24 @@ class Headermenu extends React.Component{
 */
 
 
+class RTKWorld extends React.Component{
+	constructor(){
+		super();
+	}
+	render(){
+		return (
+			<div>
+				<Topbanner />
+				<HeaderMenuNew />
+				<Banner />
+				<LeftPanel />
+				<Content />
+				<Footer />
+				<Helloworld />
+			</div>
+		)
+	}
+}
 
 class Helloworld extends React.Component{
 	constructor(){
@@ -549,8 +577,7 @@ class Helloworld extends React.Component{
 		)	
 	}
 }
-ReactDOM.render(<Provider store={store}><Helloworld /></Provider>,document.getElementById('root'))
 
-
-
-
+//07-02-2021
+ReactDOM.render(<Provider store={store}><RTKWorld /></Provider>,document.getElementById('root'))
+//ReactDOM.render(<Provider store={store}><Helloworld /></Provider>,document.getElementById('root'))

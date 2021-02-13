@@ -32,7 +32,7 @@ function MyApp(props) {
 							<h3 style={{color:"#FFF"}}>-- {props.myname} --</h3>
 							<h3 style={{color:"#F00"}}>Mother Componenet</h3>
 							<a style={{cursor:"pointer", color:"#15b5c5"}} onClick={()=>{props.getNewName("LION RAJA")}}>
-								Combine Reducer Form Redux
+								Combine Reducer Form Redux .. {props.mtkage}
 							</a><br />
 							<ul style={{listStyleType:"none"}}>
 								{mywish}
@@ -51,6 +51,7 @@ const mapStateToProps = (state)=>{
 		myname:state.name,
 		mywish:state.wishes,
 		bgc:state.bgc,
+		mtkage:state.mtkage
 	}
 }
 
@@ -73,7 +74,6 @@ const mapDispatchToProps = (dispatch)=>{
 			});
 			
 			dispatch({type:'PLZWAIT',payload:'Please wait'})
-
 		},
 	}
 }	

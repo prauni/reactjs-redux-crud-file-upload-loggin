@@ -6,6 +6,7 @@ const sonageReducer = (state=1,action) =>{
 	if(action.type==='AGE_UP_ASYNC'){
 		return action.myage + ' Years, ' + Math.floor((Math.random() * 10) + 1) + ' Days';
 	}
+	
 	return state;
 }
 

@@ -144,6 +144,7 @@ class RTKWorld extends React.Component{
 	render(){
 		return (
 			<div>
+				<h1>Here</h1>
 				<Topbanner />
 				<HeaderMenuNew />
 				<Banner />
@@ -274,12 +275,12 @@ class Helloworld extends React.Component{
 		$.ajax({
 			url:'https://medisius.sit.uproducts.in/api/get_search_keyword',
 			success:(res)=>{
-				console.log('helllo');
+				console.log('hellloStar');
 				//console.log(res);
 				console.log('India');
 				//res = JSON.parse(res);
 				res.map((val)=>{
-					//console.log(val);
+					console.log(val);
 				});
 				this.setState({
 					//searchlist:res
